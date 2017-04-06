@@ -8,7 +8,8 @@ namespace Fabric.Platform.Auth
 {
     public class IdTokenMiddleware
     {
-        private const string IdTokenHeader = "fabric-end-user";
+        public const string IdTokenHeader = "fabric-end-user";
+
         public static AppFunc Inject(AppFunc next)
         {
             return env =>

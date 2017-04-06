@@ -7,8 +7,8 @@ namespace Fabric.Platform.Logging
 {
     public class CorrelationTokenMiddleware
     {
-        public static string CorrelationTokenHeaderName = "Correlation-Token";
-        public static string CorrelationTokenContextName = "CorrelationToken";
+        public const string CorrelationTokenHeaderName = "Correlation-Token";
+        private const string CorrelationTokenContextName = "CorrelationToken";
         public static AppFunc Inject(AppFunc next)
         {
             return async env =>
