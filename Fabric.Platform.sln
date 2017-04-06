@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Logging", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Auth", "Fabric.Platform.Auth\Fabric.Platform.Auth.csproj", "{476A5B82-D813-455D-930E-2E05F5B4F8E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Http", "Fabric.Platform.Http\Fabric.Platform.Http.csproj", "{0DE16880-65D7-44C7-85F7-9C2EBB8A114A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{476A5B82-D813-455D-930E-2E05F5B4F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476A5B82-D813-455D-930E-2E05F5B4F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476A5B82-D813-455D-930E-2E05F5B4F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DE16880-65D7-44C7-85F7-9C2EBB8A114A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE16880-65D7-44C7-85F7-9C2EBB8A114A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE16880-65D7-44C7-85F7-9C2EBB8A114A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE16880-65D7-44C7-85F7-9C2EBB8A114A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
