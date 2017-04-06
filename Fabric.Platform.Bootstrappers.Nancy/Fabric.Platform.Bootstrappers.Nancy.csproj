@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <Version>1.0.0-alpha.3</Version>
+    <Version>1.0.0-alpha.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.0-alpha.2" />
-    <PackageReference Include="Fabric.Platform.Http" Version="1.0.0-alpha.2" />
-    <PackageReference Include="Fabric.Platform.Logging" Version="1.0.0-alpha.3" />
+    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.0-alpha.3" />
+    <PackageReference Include="Fabric.Platform.Http" Version="1.0.0-alpha.3" />
+    <PackageReference Include="Fabric.Platform.Logging" Version="1.0.0-alpha.4" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
   </ItemGroup>
 
