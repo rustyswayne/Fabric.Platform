@@ -3,13 +3,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using IdentityModel.Client;
+using Fabric.Platform.Shared;
 
 namespace Fabric.Platform.Http
 {
     public class HttpClientFactory : IHttpClientFactory
     {
-        private const string CorrelationTokenHeaderName = "Correlation-Token";
-        private const string IdTokenHeader = "fabric-end-user";
         private readonly string _correlationToken;
         private readonly string _idToken;
         private readonly TokenClient _tokenClient;
@@ -30,10 +29,10 @@ namespace Fabric.Platform.Http
         {
             var client = new HttpClient{ BaseAddress = uri};
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            client.DefaultRequestHeaders.Add(CorrelationTokenHeaderName, _correlationToken);
+            client.DefaultRequestHeaders.Add(Constants.FabricHeaders.CorrelationTokenHeaderName, _correlationToken);
             if (!string.IsNullOrEmpty(_idToken))
             {
-                client.DefaultRequestHeaders.Add(IdTokenHeader, _idToken);
+                client.DefaultRequestHeaders.Add(Constants.FabricHeaders.IdTokenHeader, _idToken);
             }
             return client;
         }
