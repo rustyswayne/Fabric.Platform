@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
-    <Version>1.0.0-alpha.1</Version>
+    <Version>1.0.0-alpha.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.0-alpha.1" />
+    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.0-alpha.2" />
     <PackageReference Include="IdentityModel" Version="2.7.0" />
   </ItemGroup>
 
