@@ -7,6 +7,6 @@ namespace Fabric.Platform.Http
     public interface IHttpClientFactory
     {
         Task<HttpClient> Create(Uri uri, string requestScope);
-        Task<HttpClient> CreateWithAccessToken(Uri uri, string accessToken);
+        HttpClient CreateWithAccessToken(Uri uri, string accessToken);
     }
 }
