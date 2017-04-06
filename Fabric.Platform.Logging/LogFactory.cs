@@ -17,6 +17,7 @@ namespace Fabric.Platform.Logging
             return new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(levelSwitch)
                 .Enrich.FromLogContext()
+                .WriteTo.ColoredConsole()
                 .WriteTo.Elasticsearch(sinkOptions).CreateLogger();
         }
     }
