@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Http", "Fab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Bootstrappers.Nancy", "Fabric.Platform.Bootstrappers.Nancy\Fabric.Platform.Bootstrappers.Nancy.csproj", "{2D016C8E-AE51-4DF1-87DD-DBA8C89ED4AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Shared", "Fabric.Platform.Shared\Fabric.Platform.Shared.csproj", "{800B6CE6-505B-4420-A958-C521982F5377}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2D016C8E-AE51-4DF1-87DD-DBA8C89ED4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D016C8E-AE51-4DF1-87DD-DBA8C89ED4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D016C8E-AE51-4DF1-87DD-DBA8C89ED4AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{800B6CE6-505B-4420-A958-C521982F5377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{800B6CE6-505B-4420-A958-C521982F5377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{800B6CE6-505B-4420-A958-C521982F5377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{800B6CE6-505B-4420-A958-C521982F5377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
