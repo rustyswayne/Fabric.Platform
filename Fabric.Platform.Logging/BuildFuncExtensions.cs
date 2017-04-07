@@ -26,5 +26,23 @@ namespace Fabric.Platform.Logging
             buildFunc(next => new MonitoringMiddleware(next, healthCheck).Inject);
             return buildFunc;
         }
+
+        public static BuildFunc UseFabricMonitoring(this BuildFunc buildFunc, Func<Task<bool>> healthCheck,
+            LoggingLevelSwitch levelSwitch)
+        {
+            buildFunc(next => new DiagnosticsMiddleware(next, levelSwitch).Inject);
+            buildFunc(next => new MonitoringMiddleware(next, healthCheck).Inject);
+            return buildFunc;
+        }
+
+        public static BuildFunc UseFabricLogging(this BuildFunc buildFunc, ILogger logger,
+            Func<Task<bool>> healthCheck, LoggingLevelSwitch levelSwitch)
+        {
+            buildFunc(next => GlobalErrorLoggingMiddleware.Inject(next, logger));
+            buildFunc(next => CorrelationTokenMiddleware.Inject(next));
+            buildFunc(next => RequestLoggingMiddleware.Inject(next, logger));
+            buildFunc(next => PerformanceLoggingMiddleware.Inject(next, logger));
+            return buildFunc;
+        }
     }
 }
