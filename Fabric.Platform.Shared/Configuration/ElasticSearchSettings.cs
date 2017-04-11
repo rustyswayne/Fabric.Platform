@@ -1,4 +1,5 @@
 ﻿using System;
+using Fabric.Platform.Shared.Exceptions;
 
 namespace Fabric.Platform.Shared.Configuration
 {
@@ -18,7 +19,7 @@ namespace Fabric.Platform.Shared.Configuration
             if (string.IsNullOrEmpty(Scheme) || string.IsNullOrEmpty(Server) ||
                 string.IsNullOrEmpty(Port))
             {
-                throw new ArgumentException("You must specify Scheme, Server and Port for elastic search.");
+                throw new FabricConfigurationException($"You must specify the {nameof(Scheme)}, {nameof(Server)} and {nameof(Port)} settings for elastic search.");
             }
 
             if (!string.IsNullOrEmpty(Username) &&

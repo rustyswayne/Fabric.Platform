@@ -18,8 +18,8 @@ namespace Fabric.Platform.Logging
 
         public DiagnosticsMiddleware(AppFunc next, LoggingLevelSwitch levelSwitch)
         {
-            _levelSwitch = levelSwitch;
-            _next = next;
+            _levelSwitch = levelSwitch ?? throw new ArgumentNullException(nameof(levelSwitch));
+            _next = next ?? throw new ArgumentNullException(nameof(next));
         }
 
         public Task Inject(IDictionary<string, object> env)

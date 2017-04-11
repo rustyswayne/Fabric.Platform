@@ -17,8 +17,8 @@ namespace Fabric.Platform.Logging
 
         public MonitoringMiddleware(AppFunc next, Func<Task<bool>> healthCheck)
         {
-            _next = next;
-            _healthCheck = healthCheck;
+            _next = next ?? throw new ArgumentNullException(nameof(next));
+            _healthCheck = healthCheck ?? throw new ArgumentNullException(nameof(healthCheck));
         }
 
         public Task Inject(IDictionary<string, object> env)
