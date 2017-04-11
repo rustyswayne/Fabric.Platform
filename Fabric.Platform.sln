@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Bootstrappe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Shared", "Fabric.Platform.Shared\Fabric.Platform.Shared.csproj", "{800B6CE6-505B-4420-A958-C521982F5377}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric.Platform.Bootstrappers.AspNetCoreMvc", "Fabric.Platform.Bootstrappers.AspNetCoreMvc\Fabric.Platform.Bootstrappers.AspNetCoreMvc.csproj", "{9D0587F8-60DB-4584-A3DE-C7E9652D3B33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{800B6CE6-505B-4420-A958-C521982F5377}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{800B6CE6-505B-4420-A958-C521982F5377}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{800B6CE6-505B-4420-A958-C521982F5377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D0587F8-60DB-4584-A3DE-C7E9652D3B33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D0587F8-60DB-4584-A3DE-C7E9652D3B33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D0587F8-60DB-4584-A3DE-C7E9652D3B33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D0587F8-60DB-4584-A3DE-C7E9652D3B33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
