@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Fabric.Platform.Shared
+﻿namespace Fabric.Platform.Shared
 {
     public static class Constants
     {

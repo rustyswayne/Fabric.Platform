@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Fabric.Platform.Shared.Configuration
+﻿namespace Fabric.Platform.Shared.Configuration
 {
     public class IdentityServerConfidentialClientSettings
     {

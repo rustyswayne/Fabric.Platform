@@ -16,10 +16,11 @@ namespace Fabric.Platform.Bootstrappers.AspNetCoreMvc
             {
                 var contextAccessor = ctx.GetRequiredService<IHttpContextAccessor>();
                 var context = contextAccessor.HttpContext;
+                // ReSharper disable once CollectionNeverUpdated.Local
                 var owinEnvironment = new OwinEnvironment(context);
                 var correlationToken =
                     owinEnvironment.FirstOrDefault(
-                        x => x.Key == Platform.Shared.Constants.FabricLogContextProperties.CorrelationTokenContextName).Value as string;
+                        x => x.Key == Shared.Constants.FabricLogContextProperties.CorrelationTokenContextName).Value as string;
                 return new HttpClientFactory(settings.Authority, settings.ClientId,
                     settings.ClientSecret, correlationToken ?? "", "");
             });
