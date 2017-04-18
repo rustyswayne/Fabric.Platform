@@ -10,13 +10,13 @@ namespace Fabric.Platform.Http
     public class HttpClientFactory : IHttpClientFactory
     {
         private readonly string _correlationToken;
-        private readonly string _idToken;
+        private readonly string _subject;
         private readonly TokenClient _tokenClient;
 
-        public HttpClientFactory(string tokenUrl, string clientId, string secret, string correlationToken, string idToken)
+        public HttpClientFactory(string tokenUrl, string clientId, string secret, string correlationToken, string subject)
         {
             _correlationToken = correlationToken;
-            _idToken = idToken;
+            _subject = subject;
             _tokenClient = new TokenClient(tokenUrl, clientId, secret);
         }
         public async Task<HttpClient> Create(Uri uri, string requestScope)
@@ -30,9 +30,9 @@ namespace Fabric.Platform.Http
             var client = new HttpClient{ BaseAddress = uri};
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Add(Constants.FabricHeaders.CorrelationTokenHeaderName, _correlationToken);
-            if (!string.IsNullOrEmpty(_idToken))
+            if (!string.IsNullOrEmpty(_subject))
             {
-                client.DefaultRequestHeaders.Add(Constants.FabricHeaders.IdTokenHeader, _idToken);
+                client.DefaultRequestHeaders.Add(Constants.FabricHeaders.IdTokenHeader, _subject);
             }
             return client;
         }
