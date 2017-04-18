@@ -20,33 +20,21 @@ namespace Fabric.Platform.UnitTests.Shared
             Assert.Equal(expectedUri, settings.GetElasticSearchUri());
         }
 
-        public static IEnumerable<object[]> MalformedData
+        public static IEnumerable<object[]> MalformedData => new[]
         {
-            get
-            {
-                return new[]
-                {
-                    new object[] {new ElasticSearchSettings() },
-                    new object[] { new ElasticSearchSettings { Server = "localhost", Port = "9200" } },
-                    new object[] {new ElasticSearchSettings { Scheme = "http", Port = "9200" } },
-                    new object[] { new ElasticSearchSettings { Scheme = "localhost", Server = "localhost" } }
-                };
-            }
-        }
+            new object[] {new ElasticSearchSettings() },
+            new object[] { new ElasticSearchSettings { Server = "localhost", Port = "9200" } },
+            new object[] {new ElasticSearchSettings { Scheme = "http", Port = "9200" } },
+            new object[] { new ElasticSearchSettings { Scheme = "localhost", Server = "localhost" } }
+        };
 
-        public static IEnumerable<object[]> ValidData
+        public static IEnumerable<object[]> ValidData => new[]
         {
-            get
-            {
-                return new[]
-                {
-                    new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200" }, new Uri("http://localhost:9200") },
-                    new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user", Password = "password" }, new Uri("http://username:password@localhost:9200") },
-                    new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user" }, new Uri("http://localhost:9200") },
-                    new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user", Password = "password" }, new Uri("http://localhost:9200") }
-                };
-            }
-        }
+            new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200" }, new Uri("http://localhost:9200") },
+            new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user", Password = "password" }, new Uri("http://username:password@localhost:9200") },
+            new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user" }, new Uri("http://localhost:9200") },
+            new object[] { new ElasticSearchSettings { Scheme = "http", Server = "localhost", Port = "9200", Username = "user", Password = "password" }, new Uri("http://localhost:9200") }
+        };
     }
 
 
