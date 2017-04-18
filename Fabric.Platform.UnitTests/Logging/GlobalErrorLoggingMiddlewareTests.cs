@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
 using Fabric.Platform.Logging;
-using Fabric.Platform.Shared;
 using LibOwin;
 using Moq;
 using Serilog;
