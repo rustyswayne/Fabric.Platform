@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fabric.Platform.Auth\Fabric.Platform.Auth.csproj" />
     <ProjectReference Include="..\Fabric.Platform.Logging\Fabric.Platform.Logging.csproj" />
   </ItemGroup>
 
