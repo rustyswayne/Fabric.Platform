@@ -20,6 +20,7 @@ namespace Fabric.Platform.Logging
         {
             buildFunc(next => GlobalErrorLoggingMiddleware.Inject(next, logger));
             buildFunc(next => CorrelationTokenMiddleware.Inject(next));
+            buildFunc(next => SubjectCorrelationMiddleware.Inject(next));
             buildFunc(next => RequestLoggingMiddleware.Inject(next, logger));
             buildFunc(next => PerformanceLoggingMiddleware.Inject(next, logger));
             buildFunc(next => new DiagnosticsMiddleware(next, levelSwitch).Inject);
