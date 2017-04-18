@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using LibOwin;
 using Xunit;
@@ -15,7 +14,7 @@ namespace Fabric.Platform.UnitTests.Logging
         private AppFunc noOp = env => Task.FromResult(0);
 
         [Theory, MemberData(nameof(RequestData))]
-        public void Inject_ShallowUrl_ReturnsNoContentStatus(string path, int statusCode, Func<Task<bool>> healthCheck)
+        public void Inject_ReturnsNoContentStatus(string path, int statusCode, Func<Task<bool>> healthCheck)
         {
             var ctx = new OwinContext();
             ctx.Request.Scheme = LibOwin.Infrastructure.Constants.Https;
