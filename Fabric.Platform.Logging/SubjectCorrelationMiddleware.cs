@@ -13,13 +13,13 @@ namespace Fabric.Platform.Logging
             return async env =>
             {
                 var owinContext = new OwinContext(env);
-                var subject = owinContext.Request.Headers[Constants.FabricHeaders.IdTokenHeader];
+                var subject = owinContext.Request.Headers[Constants.FabricHeaders.SubjectNameHeader];
                 if (string.IsNullOrEmpty(subject))
                 {
                     subject = owinContext.Request.User.FindFirst(SubClaim).Value;
                 }
-                owinContext.Set(Constants.FabricHeaders.IdTokenHeader, subject);
-                using (LogContext.PushProperty(Constants.FabricHeaders.IdTokenHeader, subject))
+                owinContext.Set(Constants.FabricHeaders.SubjectNameHeader, subject);
+                using (LogContext.PushProperty(Constants.FabricHeaders.SubjectNameHeader, subject))
                 {
                     await next(env);
                 }

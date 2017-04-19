@@ -32,7 +32,7 @@ namespace Fabric.Platform.Http
             client.DefaultRequestHeaders.Add(Constants.FabricHeaders.CorrelationTokenHeaderName, _correlationToken);
             if (!string.IsNullOrEmpty(_subject))
             {
-                client.DefaultRequestHeaders.Add(Constants.FabricHeaders.IdTokenHeader, _subject);
+                client.DefaultRequestHeaders.Add(Constants.FabricHeaders.SubjectNameHeader, _subject);
             }
             return client;
         }

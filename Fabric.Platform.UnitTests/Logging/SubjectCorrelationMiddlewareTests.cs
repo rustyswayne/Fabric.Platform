@@ -35,7 +35,7 @@ namespace Fabric.Platform.UnitTests.Logging
             pipeline(ctx.Environment);
 
             //Assert
-            var actualUserId = ctx.Environment[Constants.FabricHeaders.IdTokenHeader];
+            var actualUserId = ctx.Environment[Constants.FabricHeaders.SubjectNameHeader];
             Assert.Equal(TestUser, actualUserId);
 
         }
@@ -59,7 +59,7 @@ namespace Fabric.Platform.UnitTests.Logging
             pipeline(ctx.Environment);
 
             //Assert
-            var hasUserId = ctx.Environment.ContainsKey(Constants.FabricHeaders.IdTokenHeader);
+            var hasUserId = ctx.Environment.ContainsKey(Constants.FabricHeaders.SubjectNameHeader);
             Assert.False(hasUserId);
 
         }
@@ -77,14 +77,14 @@ namespace Fabric.Platform.UnitTests.Logging
                     Method = "GET",
                 }
             };
-            ctx.Request.Headers.Append(Constants.FabricHeaders.IdTokenHeader, TestUser);
+            ctx.Request.Headers.Append(Constants.FabricHeaders.SubjectNameHeader, TestUser);
 
             //Act
             var pipeline = SubjectCorrelationMiddleware.Inject(_noOp);
             pipeline(ctx.Environment);
 
             //Assert
-            var actualUserId = ctx.Environment[Constants.FabricHeaders.IdTokenHeader];
+            var actualUserId = ctx.Environment[Constants.FabricHeaders.SubjectNameHeader];
             Assert.Equal(TestUser, actualUserId);
         }
     }
