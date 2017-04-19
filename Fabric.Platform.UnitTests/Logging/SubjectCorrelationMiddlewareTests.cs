@@ -15,6 +15,8 @@ namespace Fabric.Platform.UnitTests.Logging
     {
         private readonly AppFunc _noOp = env => Task.FromResult(0);
         private const string TestUser = "testuser";
+        private const string UnknownUser = "unknown";
+
         [Fact]
         public void UserIdMiddleware_Inject_AddsUserIdFromContext()
         {
@@ -50,7 +52,7 @@ namespace Fabric.Platform.UnitTests.Logging
                 {
                     Scheme = LibOwin.Infrastructure.Constants.Https,
                     Path = new PathString("/"),
-                    Method = "GET",
+                    Method = "GET"
                 }
             };
 
@@ -59,8 +61,8 @@ namespace Fabric.Platform.UnitTests.Logging
             pipeline(ctx.Environment);
 
             //Assert
-            var hasUserId = ctx.Environment.ContainsKey(Constants.FabricHeaders.SubjectNameHeader);
-            Assert.False(hasUserId);
+            var actualUserId = ctx.Environment[Constants.FabricHeaders.SubjectNameHeader];
+            Assert.Equal(UnknownUser, actualUserId);
 
         }
 

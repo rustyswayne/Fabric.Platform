@@ -13,8 +13,15 @@ namespace Fabric.Platform.Logging
             return async env =>
             {
                 var owinContext = new OwinContext(env);
-                var subject = owinContext.Request.Headers[Constants.FabricHeaders.SubjectNameHeader];
-                if (string.IsNullOrEmpty(subject))
+                //initialize to unknown
+                var subject = "unknown";
+                //if the subject id comes in the header set it from there
+                if (owinContext.Request.Headers.ContainsKey(Constants.FabricHeaders.SubjectNameHeader))
+                {
+                    subject = owinContext.Request.Headers[Constants.FabricHeaders.SubjectNameHeader];
+                }
+                //otherwise try to get it from the current user
+                else if (owinContext.Request.User != null)
                 {
                     subject = owinContext.Request.User.FindFirst(SubClaim).Value;
                 }
