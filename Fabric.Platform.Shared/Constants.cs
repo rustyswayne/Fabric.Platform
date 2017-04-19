@@ -5,6 +5,7 @@
         public static class FabricHeaders
         {
             public const string SubjectNameHeader = "fabric-end-user-subject-id";
+            public const string IdTokenHeader = "fabric-end-user";
             public const string CorrelationTokenHeaderName = "correlation-token";
             public const string AuthenticationHeaderPrefix = "Bearer";
         }
