@@ -17,7 +17,7 @@ namespace Fabric.Platform.UnitTests.Auth
         private readonly AppFunc _noOp = env => Task.FromResult(0);
 
         [Theory, MemberData(nameof(RequestUser))]
-        public void AuthorizationMiddleware_Inject_ReturnsForbiddenResponse(ClaimsPrincipal claimsPrincipal, HttpStatusCode statusCode)
+        public void AuthorizationMiddleware_Inject_ReturnsForbiddenResponse(ClaimsPrincipal claimsPrincipal, string method, HttpStatusCode statusCode)
         {
             var ctx = new OwinContext
             {
@@ -25,7 +25,7 @@ namespace Fabric.Platform.UnitTests.Auth
                 {
                     Scheme = LibOwin.Infrastructure.Constants.Https,
                     Path = new PathString("/authtest"),
-                    Method = "GET",
+                    Method = method,
                     User = claimsPrincipal
                 }
             };
@@ -38,8 +38,9 @@ namespace Fabric.Platform.UnitTests.Auth
 
         public static IEnumerable<object[]> RequestUser => new[]
         {
-            new object[] { new TestPrincipal(new Claim("scope", "api1.read")), HttpStatusCode.OK },
-            new object[] { new TestPrincipal(), HttpStatusCode.Forbidden }
+            new object[] { new TestPrincipal(new Claim("scope", "api1.read")), "GET", HttpStatusCode.OK },
+            new object[] { new TestPrincipal(), "GET", HttpStatusCode.Forbidden },
+            new object[] { new TestPrincipal(), "OPTIONS", HttpStatusCode.OK }
         };
     }
 }

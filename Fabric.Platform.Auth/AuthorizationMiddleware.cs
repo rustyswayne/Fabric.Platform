@@ -12,6 +12,8 @@ namespace Fabric.Platform.Auth
             return env =>
             {
                 var ctx = new OwinContext(env);
+                if (ctx.Request.Method == "OPTIONS") return next(env);
+
                 var principal = ctx.Request.User;
                 if (principal != null)
                 {
