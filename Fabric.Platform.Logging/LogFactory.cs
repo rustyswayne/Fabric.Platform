@@ -9,11 +9,12 @@ namespace Fabric.Platform.Logging
     public class LogFactory
     {
         public static ILogger CreateLogger(LoggingLevelSwitch levelSwitch, ElasticSearchSettings elasticSearchSettings,
-            string clientName, bool writeToFile = false)
+            string clientName, string applicationName, bool writeToFile = false)
         {
+            var logPrefix = $"logstash-{clientName}-{applicationName}";
             var sinkOptions = new ElasticsearchSinkOptions(elasticSearchSettings.GetElasticSearchUri())
             {
-                IndexFormat = "logstash-" + clientName + "-{0:yyyy.MM.dd}"
+                IndexFormat = logPrefix + "-{0:yyyy.MM.dd}"
             };
             var loggerConfiguration = new LoggerConfiguration()
                 .MinimumLevel.ControlledBy(levelSwitch)
