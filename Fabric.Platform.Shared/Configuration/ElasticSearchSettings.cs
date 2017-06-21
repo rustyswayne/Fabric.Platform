@@ -14,6 +14,8 @@ namespace Fabric.Platform.Shared.Configuration
 
         public string Password { get; set; }
 
+        public string BufferBaseFilename { get; set; } = "./logs/buffer";
+
         public Uri GetElasticSearchUri()
         {
             if (string.IsNullOrEmpty(Scheme) || string.IsNullOrEmpty(Server) ||
