@@ -35,7 +35,7 @@ namespace Fabric.Platform.Logging
                     subject = owinContext.Request.Headers[Constants.FabricHeaders.SubjectNameHeader];
                 }
                 //otherwise try to get it from the current user
-                else if (owinContext.Request.User != null)
+                else if (owinContext.Request.User?.FindFirst(SubClaim) != null)
                 {
                     subject = owinContext.Request.User.FindFirst(SubClaim).Value;
                 }

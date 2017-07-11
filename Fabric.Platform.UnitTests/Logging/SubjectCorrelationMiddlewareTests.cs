@@ -67,6 +67,51 @@ namespace Fabric.Platform.UnitTests.Logging
         }
 
         [Fact]
+        public void UserIdMiddleware_Inject_DoesNotAddUserIdWhenSubIsNotPresent()
+        {
+            var ctx = new OwinContext
+            {
+                Request =
+                {
+                    Scheme = LibOwin.Infrastructure.Constants.Https,
+                    Path = new PathString("/"),
+                    Method = "GET",
+                    User = new TestPrincipal()
+                }
+            };
+
+            var pipeline = SubjectCorrelationMiddleware.Inject(_noOp);
+            pipeline(ctx.Environment);
+
+            //Assert
+            var actualUserId = ctx.Environment[Constants.FabricHeaders.SubjectNameHeader];
+            Assert.Equal(UnknownUser, actualUserId);
+        }
+
+        [Fact]
+        public void UserIdMiddleware_Inject_UsesSubClaimWhenPresent()
+        {
+            var subClaim = "testuser";
+            var ctx = new OwinContext
+            {
+                Request =
+                {
+                    Scheme = LibOwin.Infrastructure.Constants.Https,
+                    Path = new PathString("/"),
+                    Method = "GET",
+                    User = new TestPrincipal(new Claim(SubjectCorrelationMiddleware.SubClaim, subClaim))
+                }
+            };
+
+            var pipeline = SubjectCorrelationMiddleware.Inject(_noOp);
+            pipeline(ctx.Environment);
+
+            //Assert
+            var actualUserId = ctx.Environment[Constants.FabricHeaders.SubjectNameHeader];
+            Assert.Equal(subClaim, actualUserId);
+        }
+
+        [Fact]
         public void UserIdCorrelationMiddleware_Inject_UsesExistingUserIdWhenPresent()
         {
             //Arrange
