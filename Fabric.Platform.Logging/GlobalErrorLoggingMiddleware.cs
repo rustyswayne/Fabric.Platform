@@ -1,5 +1,4 @@
 ﻿using System;
-using Serilog;
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
 
 namespace Fabric.Platform.Logging
@@ -16,8 +15,9 @@ namespace Fabric.Platform.Logging
                 }
                 catch (Exception ex)
                 {
-                    var contextSpecificLogger = logger.ForContext<GlobalErrorLoggingMiddleware>();
-                    contextSpecificLogger.Error(ex, "Unhandled exception");
+                    // TODO review
+                    logger.Error<GlobalErrorLoggingMiddleware>("Unhandled exception", ex);
+
                 }
             };
         }

@@ -5,7 +5,6 @@ using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, objec
 using Fabric.Platform.Logging;
 using LibOwin;
 using Moq;
-using Serilog;
 
 namespace Fabric.Platform.UnitTests.Logging
 {
@@ -27,10 +26,10 @@ namespace Fabric.Platform.UnitTests.Logging
             };
             //ctx.Request.Headers.Add("TestHeader", new[] {"TestHeaderValue"});
 
-            var loggerMock = new Mock<ILogger>();
-            loggerMock.Setup(logger => logger.ForContext<RequestLoggingMiddleware>()).Returns(() => loggerMock.Object);
-            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>(), It.IsAny<object>())).Verifiable();
-            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<object>())).Verifiable();
+            var loggerMock = new Mock<Platform.Logging.ILogger>();
+            
+            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), () => new object[] { It.IsAny<string>(), It.IsAny<object>(), It.IsAny<object>() })).Verifiable();
+            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), () => new object[] { It.IsAny<int>(), It.IsAny<object>() })).Verifiable();
 
             //Act
             var pipeline = RequestLoggingMiddleware.Inject(_noOp, loggerMock.Object);

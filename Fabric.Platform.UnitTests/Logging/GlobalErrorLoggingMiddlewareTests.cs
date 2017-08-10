@@ -5,7 +5,6 @@ using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, objec
 using Fabric.Platform.Logging;
 using LibOwin;
 using Moq;
-using Serilog;
 
 namespace Fabric.Platform.UnitTests.Logging
 {
@@ -27,9 +26,8 @@ namespace Fabric.Platform.UnitTests.Logging
                 }
             };
 
-            var loggerMock = new Mock<ILogger>();
-            loggerMock.Setup(logger => logger.ForContext<GlobalErrorLoggingMiddleware>()).Returns(() => loggerMock.Object);
-            loggerMock.Setup(logger => logger.Error(It.IsAny<Exception>(), It.IsAny<string>())).Verifiable();
+            var loggerMock = new Mock<Platform.Logging.ILogger>();
+            loggerMock.Setup(logger => logger.Error(It.IsAny<string>(), It.IsAny<Exception>())).Verifiable();
 
             //Act
             var pipeline = GlobalErrorLoggingMiddleware.Inject(_noOp, loggerMock.Object);

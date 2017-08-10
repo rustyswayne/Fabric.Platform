@@ -24,7 +24,7 @@ namespace Fabric.Platform.Logging
                 .WriteTo.ColoredConsole()
                 .WriteTo.Elasticsearch(sinkOptions);
 
-            return loggerConfiguration.CreateLogger();
+            return new SerilogAdapter(loggerConfiguration.CreateLogger());
         }
     }
 }

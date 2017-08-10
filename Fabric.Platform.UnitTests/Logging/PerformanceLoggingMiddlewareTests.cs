@@ -27,9 +27,8 @@ namespace Fabric.Platform.UnitTests.Logging
                 }
             };
 
-            var loggerMock = new Mock<ILogger>();
-            loggerMock.Setup(logger => logger.ForContext<PerformanceLoggingMiddleware>()).Returns(() => loggerMock.Object);
-            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>(), It.IsAny<Int64>())).Verifiable();
+            var loggerMock = new Mock<Platform.Logging.ILogger>();
+            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), () => new object[] { It.IsAny<string>(), It.IsAny<object>(), It.IsAny<Int64>() })).Verifiable();
 
             //Act
             var pipeline = PerformanceLoggingMiddleware.Inject(_noOp, loggerMock.Object);

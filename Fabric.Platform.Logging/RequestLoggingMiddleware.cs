@@ -1,5 +1,4 @@
 ﻿using LibOwin;
-using Serilog;
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
 
 namespace Fabric.Platform.Logging
@@ -10,19 +9,27 @@ namespace Fabric.Platform.Logging
         {
             return async env =>
             {
-                var contextSpecificLogger = logger.ForContext<RequestLoggingMiddleware>();
                 var owinContext = new OwinContext(env);
 
-                contextSpecificLogger.Information("Incoming request: {@Method}, {@Path}, {@Headers}",
+                logger.Information<RequestLoggingMiddleware>(
+                    "Incoming request: {@Method}, {@Path}, {@Headers}",
+                    () => new object[]
+                    {
                         owinContext.Request.Method,
                         owinContext.Request.Path,
-                        owinContext.Request.Headers);
+                        owinContext.Request.Headers
+                    });
+
 
                 await next(env);
 
-                contextSpecificLogger.Information("Outgoing response: {@StatusCode}, {@Headers}",
-                    owinContext.Response.StatusCode,
-                    owinContext.Response.Headers);
+                logger.Information<RequestLoggingMiddleware>(
+                    "Outgoing response: {@StatusCode}, {@Headers}",
+                    () => new object[]
+                    {
+                        owinContext.Response.StatusCode,
+                        owinContext.Response.Headers
+                    });
             };
         }
     }

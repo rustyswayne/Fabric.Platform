@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using LibOwin;
-using Serilog;
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
 
 namespace Fabric.Platform.Logging
@@ -16,9 +15,12 @@ namespace Fabric.Platform.Logging
                 await next(env);
                 stopWatch.Stop();
                 var owinContext = new OwinContext(env);
-                var contextSpecificLogger = logger.ForContext<PerformanceLoggingMiddleware>();
-                contextSpecificLogger.Information("Request: {@Method} {@Path} executed in {@RequestTime:000} ms",
-                    owinContext.Request.Method, owinContext.Request.Path, stopWatch.ElapsedMilliseconds);
+
+                logger.Information<PerformanceLoggingMiddleware>("Request: {@Method} {@Path} executed in {@RequestTime:000} ms",
+                    () => new object[]
+                    {
+                        owinContext.Request.Method, owinContext.Request.Path, stopWatch.ElapsedMilliseconds
+                    });
             };
         }
     }
