@@ -16,24 +16,24 @@ namespace Fabric.Platform.Logging
             this.logger.Error(exception, message);
         }
 
-        public void Error(Type callingType, string message, Exception exception, params Func<object>[] propertyValues)
+        public void Error(Type callingType, string message, Exception exception, params object[] propertyValues)
         {
             var contextLogger = this.logger.ForContext(callingType);
             contextLogger.Error(exception, message, propertyValues);
         }
 
-        public void Error(string message, Exception exception, params Func<object>[] propertyValues)
+        public void Error(string message, Exception exception, params object[] propertyValues)
         {
             this.logger.Error(exception, message, propertyValues);
         }
 
-        public void Warning(Type callingType, string message, Exception exception, params Func<object>[] propertyValues)
+        public void Warning(Type callingType, string message, Exception exception, params object[] propertyValues)
         {
             var contextLogger = this.logger.ForContext(callingType);
             contextLogger.Warning(exception, message, propertyValues);
         }
 
-        public void Warning(string message, Exception exception, params Func<object>[] propertyValues)
+        public void Warning(string message, Exception exception, params object[] propertyValues)
         {
             this.logger.Warning(exception, message, propertyValues);
         }
@@ -43,12 +43,12 @@ namespace Fabric.Platform.Logging
             this.logger.Information(message);
         }
 
-        public void Information(string message, params Func<object>[] propertyValues)
+        public void Information(string message, params object[] propertyValues)
         {
             this.logger.Information(message, propertyValues);
         }
 
-        public void Information(Type callingType, string message, params Func<object>[] propertyValues)
+        public void Information(Type callingType, string message, params object[] propertyValues)
         {
             var contextLogger = this.logger.ForContext(callingType);
             contextLogger.Information(message, propertyValues);
@@ -59,12 +59,12 @@ namespace Fabric.Platform.Logging
             this.logger.Debug(message);
         }
 
-        public void Debug(string message, params Func<object>[] propertyValues)
+        public void Debug(string message, params object[] propertyValues)
         {
             this.logger.Debug(message, propertyValues);
         }
 
-        public void Debug(Type callingType, string message, params Func<object>[] propertyValues)
+        public void Debug(Type callingType, string message, params object[] propertyValues)
         {
             var contextLogger = this.logger.ForContext(callingType);
             contextLogger.Debug(message, propertyValues);
