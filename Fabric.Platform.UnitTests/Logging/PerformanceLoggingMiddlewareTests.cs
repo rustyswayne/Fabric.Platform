@@ -6,7 +6,6 @@ using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, objec
 using Fabric.Platform.Logging;
 using LibOwin;
 using Moq;
-using Serilog;
 
 namespace Fabric.Platform.UnitTests.Logging
 {
@@ -27,7 +26,7 @@ namespace Fabric.Platform.UnitTests.Logging
                 }
             };
 
-            var loggerMock = new Mock<Platform.Logging.ILogger>();
+            var loggerMock = new Mock<ILogger>();
             loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), () => new object[] { It.IsAny<string>(), It.IsAny<object>(), It.IsAny<Int64>() })).Verifiable();
 
             //Act
