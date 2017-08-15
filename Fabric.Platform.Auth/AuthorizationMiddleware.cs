@@ -7,12 +7,14 @@ namespace Fabric.Platform.Auth
 {
     public class AuthorizationMiddleware
     {
-        public static AppFunc Inject(AppFunc next, string[] requiredScopes)
+        public static AppFunc Inject(AppFunc next, string[] requiredScopes, string[] allowedPaths = null)
         {
             return env =>
             {
                 var ctx = new OwinContext(env);
                 if (ctx.Request.Method == "OPTIONS") return next(env);
+
+                if (allowedPaths != null && allowedPaths.Contains(ctx.Request.Path.Value)) return next(env);
 
                 var principal = ctx.Request.User;
                 if (principal != null)

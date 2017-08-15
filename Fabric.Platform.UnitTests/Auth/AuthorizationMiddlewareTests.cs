@@ -36,6 +36,34 @@ namespace Fabric.Platform.UnitTests.Auth
             Assert.Equal((int)statusCode, ctx.Response.StatusCode);
         }
 
+        [Theory, MemberData(nameof(AllowedPathsRequests))]
+        public void AuthorizationMiddleware_Inject_AllowsAllowedPaths(ClaimsPrincipal claimsPrincipal, string method, string pathValue, string[] allowedPaths, HttpStatusCode statusCode)
+        {
+            var ctx = new OwinContext
+            {
+                Request =
+                {
+                    Scheme = LibOwin.Infrastructure.Constants.Https,
+                    Path = new PathString(pathValue),
+                    Method = method,
+                    User = claimsPrincipal
+                }
+            };
+
+
+            var pipeline = AuthorizationMiddleware.Inject(_noOp, new[] { "api1.read", "api1.write" }, allowedPaths);
+            pipeline(ctx.Environment);
+            Assert.Equal((int)statusCode, ctx.Response.StatusCode);
+        }
+
+        public static IEnumerable<object[]> AllowedPathsRequests => new[]
+        {
+            new object[]{ new TestPrincipal(), "GET", "/authtest", new []{"/authtest"}, HttpStatusCode.OK },
+            new object[]{ new TestPrincipal(), "GET", "/authtest", null, HttpStatusCode.Forbidden },
+            new object[]{ new TestPrincipal(), "GET", "/authtest", new []{"/foo", "/authtest"}, HttpStatusCode.OK },
+            new object[]{ new TestPrincipal(), "GET", "/authtest", new []{"/foo"}, HttpStatusCode.Forbidden },            
+        };
+
         public static IEnumerable<object[]> RequestUser => new[]
         {
             new object[] { new TestPrincipal(new Claim("scope", "api1.read")), "GET", HttpStatusCode.OK },
